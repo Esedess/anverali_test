@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:16.3-alpine3.18
+    container_name: db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=anverali_test
+      - POSTGRES_PASSWORD=anverali_test
+      - POSTGRES_DB=anverali_test_dev
+  web:
+    build:
+      context: ./services/web
+      dockerfile: Dockerfile
+    restart: always
+    container_name: web
+    volumes:
+      - web_data:/usr/src/app/
+    command: gunicorn --bind 0.0.0.0:5000 project:app
+    expose:
+      - 5000
+    env_file:
+      - ./.env
+    depends_on:
+      - db
+  nginx:
+    build: ./services/nginx
+    container_name: nginx
+    ports:
+      - 1337:80
+    depends_on:
+      - web
+
+volumes:
+  postgres_data:
+    driver: local
+    driver_opts:
+      o: bind
+      type: ext4
+      device: /www/db/
+  web_data:
+    driver: local
+    driver_opts:
+      o: bind
+      type: ext4
+      device: /www/web/
+
+      
+
