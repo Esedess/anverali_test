@@ -14,7 +14,7 @@
 ```bash
 git clone https://github.com/Esedess/anverali_test
 ```
-3. Создайте `.env` файл в корневой папке проекта и укажите необходимые переменные окружения, по примеру шаблона [.env_example](https://github.com/Esedess/anverali_test/.env_example).
+3. Создайте `.env` файл в корневой папке проекта и укажите необходимые переменные окружения, по примеру шаблона [.env_example](https://github.com/Esedess/anverali_test/blob/main/.env_example).
 
 
 
