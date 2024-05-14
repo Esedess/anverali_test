@@ -135,7 +135,7 @@ dmypy.json
 static/
 
 # Logs Django
-/logs
+# /logs
 
 # Папки, создаваемые средой разработки
 .idea
